@@ -1,0 +1,10 @@
+.export-button {
+    right: 64px;
+    top: 96px;
+    position: absolute;
+    background-color: rgb(59, 75, 149);
+    border: none;
+    color: white;
+    border-radius: 12px;
+    height: 24px;
+}

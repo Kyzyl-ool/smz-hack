@@ -1,0 +1,15 @@
+.wizard-wrapper {
+    height: 70vh;
+    padding: 32px;
+}
+
+.wizard-wrapper-buttons {
+    display: flex;
+    padding: 0 32px;
+    justify-content: space-between;
+}
+
+.MuiStepper-root {
+    display: flex;
+    padding: 24px 32px 24px 24px;
+}

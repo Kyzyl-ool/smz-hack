@@ -1,0 +1,108 @@
+.header {
+    padding: 0 32px;
+    display: flex;
+    background-color: #556cd6;
+    justify-content: space-between;
+    flex-direction: row;
+    min-height: 54px;
+    max-height: 54px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.select__icon {
+    fill: white !important;
+}
+
+.MuiInput-underline:before,
+.MuiInput-underline:after,
+.MuiInput-underline:hover:not(.Mui-disabled):before {
+    border-bottom: none !important;
+}
+
+.header > .buttons-wrapper {
+    align-items: stretch;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.logout-button {
+    color: white;
+    height: 54px;
+    width: 64px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 16px;
+    margin-left: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.user-info .user-photo {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-top: 2px;
+}
+
+.header .user-info {
+    display: flex;
+}
+
+.header .prod-name,
+.header .user-name {
+    color: white;
+    font-weight: 600;
+    margin-top: 12px    ;
+}
+
+.header .user-name {
+    margin-right: 16px;
+    margin-top: 16px !important;
+}
+
+.user-info-wrapper {
+    flex-direction: column;
+    color: white !important;
+    font-family: sans-serif;
+    font-size: 1.4em;
+    justify-content: center;
+    flex: 7 1;
+}
+
+.user-img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.user-img-wrapper {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.user-online-info {
+    color: #99ffffff;
+    font-size: 1em;
+    margin-top: 0.4em;
+}
+
+
+.buttons-wrapper > button {
+    margin-right: 0.8em;
+}
+
+.filled-icon {
+    transform: rotate(90deg);
+}
+
+.base-header-content {
+    color: #fff;
+    font-size: 1.5em;
+    justify-content: center;
+    padding-left: 48px;
+}

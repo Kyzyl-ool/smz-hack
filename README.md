@@ -1,0 +1,2 @@
+# smz-hack
+ SMZ hack
