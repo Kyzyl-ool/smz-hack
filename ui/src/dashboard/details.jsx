@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {makeStyles, useTheme} from "@material-ui/core";
 import ChartProvider from "../components/chart/ChartProvider";
 import Typography from "@material-ui/core/Typography/Typography";
-import Rating from '@material-ui/lab/Rating';
+import {Rating} from "@material-ui/lab";
 import Box from "@material-ui/core/Box/Box";
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import Tabs from "@material-ui/core/Tabs";

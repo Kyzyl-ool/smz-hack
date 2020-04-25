@@ -43,7 +43,7 @@ const ProductCardForDeveloper = ({avatarSrc, description, price: cost, averageRa
                         <Box mx={1}>
                             <Box mx={1} mb={1}>
                                 <Typography>
-                                    <b>Описание:</b>
+                                    <b>Краткое описание:</b>
                                 </Typography>
                                 <Box>
                                     <Typography variant={"body2"}>
@@ -53,7 +53,7 @@ const ProductCardForDeveloper = ({avatarSrc, description, price: cost, averageRa
                             </Box>
                             <Box mx={1}>
                                 <Typography>
-                                    <b>Компания:</b>&nbsp;{company}
+                                    <b>Заказчик:</b>&nbsp;{company}
                                 </Typography>
                             </Box>
                         </Box>
@@ -61,7 +61,7 @@ const ProductCardForDeveloper = ({avatarSrc, description, price: cost, averageRa
                     <Box className={classes.item2}>
                         <Box mb={1}>
                             <Typography>
-                                <b>Стоимость:</b>
+                                <b>Вознаграждение:</b>
                             </Typography>
                             <Typography variant={"h5"}>
                                 {cost} ₽
@@ -69,10 +69,10 @@ const ProductCardForDeveloper = ({avatarSrc, description, price: cost, averageRa
                         </Box>
                         <Box>
                             <Typography>
-                                <b>Ср. оценка:</b>
+                                <b>Поинтересовались:</b>
                             </Typography>
                             <Typography variant={"h5"}>
-                                {averageRate}/5
+                                {averageRate}
                             </Typography>
                         </Box>
                     </Box>

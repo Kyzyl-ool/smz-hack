@@ -74,7 +74,7 @@ const ListOfProducts = () => {
             </Box>
             {
                 stubData.map((value, index) => (
-                    <NavLink to={`product/${value.id}`} key={index} style={{textDecoration: 'none'}}>
+                    <NavLink to={`developer/${value.id}`} key={index} style={{textDecoration: 'none'}}>
                         <ProductCard
                             {...value}
                         />

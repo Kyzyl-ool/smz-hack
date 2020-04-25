@@ -83,7 +83,7 @@ const ProductCard = ({avatarSrc, description, price: cost, averageRate, type, ke
                     </Typography>
                     <Box p={1} display={'flex'} flexWrap={'wrap'} >
                         {
-                            keywords.map(value => (<Box mr={1}><Chip
+                            keywords.map((value, index) => (<Box key={index} mr={1}><Chip
                                 label={value}
                             /></Box>))
                         }

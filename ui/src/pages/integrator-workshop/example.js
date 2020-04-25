@@ -25,178 +25,77 @@ const theme = createMuiTheme({
             }
         }
     }
-})
+});
 
 export const products = [
     {
         id: 0,
         name: 'Цифровая обработка звука',
-        tariff: 'бессрочно',
         price: 100000,
-        price2: 100,
         avatarSrc: 'https://hholdorf.files.wordpress.com/2015/09/physics-the-nature-of-sound.jpg',
         description: 'Необходимо реализовать библиотеку для обработки звуковых файлов. Подробности читать здесь.',
-        RAM: 2.7,
-        cores: 2,
-        performance: 2,
-        memory: 20,
         keywords: ['Cryptography', 'Python', 'HTML'],
         averageRate: 4,
         type: 'библиотека',
-        company: "ООО Солярис"
+        company: "ООО Солярис",
+        orders: 16,
+        successOrders: 6,
+        interested: 40,
     },
     {
         id: 1,
         name: 'Генерация лиц несуществующих людей',
-        tariff: 'бессрочно',
         price: 50000,
-        price2: 1000,
         avatarSrc: 'https://cameralabs.org/media/lab18/12/21-2/iskusstvennyy-intellekt-sozdaet-portrety-nesuschestvuyuschih-lyudey_4.jpg',
         description: 'Нужно сделать библиотеку для генерации лиц несуществующих людей в хорошем качестве.',
-        RAM: 5,
-        cores: 1,
-        performance: 1,
-        memory: 10,
         keywords: ['ML', 'CV', 'Python'],
         averageRate: 4,
         type: 'библиотека',
-        company: "ООО Солярис"
+        company: "ООО Солярис",
+        orders: 6,
+        interested: 20,
     },
     {
         id: 2,
         name: 'Мессенджер с высокой степенью шифрования',
-        tariff: 'ежедневный',
         price: 5000,
-        price2: 200,
         avatarSrc: 'https://www.pngkey.com/png/detail/443-4438515_the-best-ressource-of-free-emoji-png-clipart.png',
         description: 'Необходимо сделать проект для надежного обмена текстовыми и файловыми сообщениями.',
-        RAM: 1,
-        cores: 1,
-        performance: 1,
-        memory: 2,
         keywords: ['Cryptography', 'Python', 'HTML'],
         averageRate: 5,
         type: 'продукт',
-        company: "ООО Солярис"
+        company: "ООО Солярис",
+        orders: 30,
+        successOrders: 29,
+        interested: 4,
     },
     {
         id: 3,
         name: 'Нужно протестировать библиотеку дополненной реальности.',
-        tariff: 'бессрочно',
         price: 5000,
-        price2: 0,
         avatarSrc: 'https://www.ittechnologynews24.com/wp-content/uploads/2019/07/AR-VR.jpg',
         description: 'С помощью этой библиотеки можно создавать решения в сфере AR',
-        RAM: 2.7,
-        cores: 4,
-        performance: 2,
-        memory: 60,
         keywords: ['AI', 'ML', 'CV', 'Python', 'C++'],
         averageRate: 3,
         type: 'библиотека',
-        company: "ООО Солярис"
+        company: "ООО Солярис",
+        orders: 3,
+        successOrders: 0,
+        interested: 1,
     },
     {
         id: 4,
         name: 'Система контроля электроэнергии в доме',
-        tariff: 'бессрочно',
         price: 100000,
-        price2: 1000,
         avatarSrc: 'https://northcyprussale.ru/uploads/s/d/o/n/don2antj3c4t/img/full_FzgLDdhq.jpg',
         description: 'Здесь реализован функционал для контроля электроэнергии (в том числе домашей) для девайсов Apple Home.',
-        RAM: 1,
-        cores: 1,
-        performance: 1,
-        memory: 10,
         keywords: ['Cryptography', 'Python', 'HTML'],
         averageRate: 2,
         type: 'библиотека',
-        company: "ООО Солярис"
-    },
-    {
-        id: 5,
-        name: 'Цифровая обработка звука',
-        tariff: 'бессрочно',
-        price: 100000,
-        price2: 100,
-        avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
-        description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
-        RAM: 2.7,
-        cores: 2,
-        performance: 2,
-        memory: 20,
-        keywords: ['Cryptography', 'Python', 'HTML'],
-        averageRate: 4,
-        type: 'библиотека',
-        company: "ООО Солярис"
-    },
-    {
-        id: 6,
-        name: 'Цифровая обработка звука',
-        tariff: 'бессрочно',
-        price: 100000,
-        price2: 100,
-        avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
-        description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
-        RAM: 2.7,
-        cores: 2,
-        performance: 2,
-        memory: 20,
-        keywords: ['Cryptography', 'Python', 'HTML'],
-        averageRate: 4,
-        type: 'библиотека',
-        company: "ООО Солярис"
-    },
-    {
-        id: 7,
-        name: 'Цифровая обработка звука',
-        tariff: 'бессрочно',
-        price: 100000,
-        price2: 100,
-        avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
-        description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
-        RAM: 2.7,
-        cores: 2,
-        performance: 2,
-        memory: 20,
-        keywords: ['Cryptography', 'Python', 'HTML'],
-        averageRate: 4,
-        type: 'библиотека',
-        company: "ООО Солярис"
-    },
-    {
-        id: 8,
-        name: 'Цифровая обработка звука',
-        tariff: 'бессрочно',
-        price: 100000,
-        price2: 100,
-        avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
-        description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
-        RAM: 2.7,
-        cores: 2,
-        performance: 2,
-        memory: 20,
-        keywords: ['Cryptography', 'Python', 'HTML'],
-        averageRate: 4,
-        type: 'библиотека',
-        company: "ООО Солярис"
-    },
-    {
-        id: 9,
-        name: 'Цифровая обработка звука',
-        tariff: 'бессрочно',
-        price: 100000,
-        price2: 100,
-        avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
-        description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
-        RAM: 2.7,
-        cores: 2,
-        performance: 2,
-        memory: 20,
-        keywords: ['Cryptography', 'Python', 'HTML'],
-        averageRate: 4,
-        type: 'библиотека',
-        company: "ООО Солярис"
+        company: "ООО Солярис",
+        orders: 1,
+        successOrders: 0,
+        interested: 21,
     },
 ];
 
@@ -204,104 +103,139 @@ export const developers = [
     {
         id: 0,
         name: 'Дроздов Николай Константинович',
-        tariff: 'бессрочно',
         price: 1000,
-        price2: 100,
         avatarSrc: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200',
         description: 'Опыт разработки: 12 лет. Работал в команде, TeamLead',
-        RAM: 2.7,
-        cores: 2,
-        performance: 2,
-        memory: 20,
         keywords: ['IT', 'Backend', 'Flask'],
         averageRate: 4,
-        type: 'библиотека',
-        company: "ООО Солярис"
+        company: "ООО Солярис",
+        lives: 'г. Москва',
+        age: 40,
+        education: 'МГУ (мехмат)',
+        yearsOfExperience: 12,
+        proffession: 'Backend-developer',
+        about: `Сдержанный
+Наглый
+Впечатлительный
+Честный
+Адекватный
+Вспыльчивый
+Жизнерадостный`,
+        projects: [
+            'https://github.com/ziadoz/awesome-php',
+            'https://heml.io/',
+            'http://www.vanillalist.com/',
+            'http://idangero.us/swiper'
+        ]
     },
     {
         id: 1,
         name: 'David DeSandro',
-        tariff: 'бессрочно',
         price: 2341,
-        price2: 1000,
         avatarSrc: 'https://cloud.24ways.org/authors/daviddesandro280.jpg',
         description: 'Worked as middle frontend-developer for 3 years. Have 10+ projects done.',
-        RAM: 5,
-        cores: 1,
-        performance: 1,
-        memory: 10,
         keywords: ['Frontend', 'IT', 'React', 'Vue'],
         averageRate: 4,
-        type: 'библиотека',
-        company: "Google"
+        company: "Google",
+        lives: 'San-Francisco',
+        age: 27,
+        education: 'MIT (Engineering)',
+        yearsOfExperience: 3,
+        proffession: 'Frontend-developer',
+        about: `Мнимый
+Ранимый
+Благоразумный
+Беспощадный
+Скучный
+Коварный
+Доверчивый`
     },
     {
         id: 2,
         name: 'Калягин Иван',
-        tariff: 'ежедневный',
         price: 1000,
-        price2: 200,
         avatarSrc: 'https://d38we5ntdyxyje.cloudfront.net/1335765/profile/UBUAADBC_avatar_medium_square.jpg',
         description: 'Занимаюсь машинным обучением 2 года. Готов взяться за любое RnD решение. также предлагаю некоторые свои проекты для покупки (см. профиль)',
-        RAM: 1,
-        cores: 1,
-        performance: 1,
-        memory: 2,
         keywords: ['ML', 'AI', 'Text Recognition', 'Algotrading'],
         averageRate: 5,
-        type: 'продукт',
-        company: "Tinkoff"
+        company: "Tinkoff",
+        lives: 'г. Москва',
+        age: 22,
+        education: 'МФТИ (ФПМИ)',
+        yearsOfExperience: 2,
+        proffession: 'Data Scientist',
+        about: `Деликатный
+Активный
+Асоциальный
+Общительный
+Деятельный
+Грубый
+Осторожный`
     },
     {
         id: 3,
         name: 'Павлов Дмитрий',
-        tariff: 'бессрочно',
         price: 1500,
-        price2: 0,
         avatarSrc: 'https://avatars.sched.co/f/16/5055544/avatar.jpg?3c2',
         description: 'Занимаюсь машинкой больше 5 лет. Предпочитаю работать в одиночку',
-        RAM: 2.7,
-        cores: 4,
-        performance: 2,
-        memory: 60,
         keywords: ['AI', 'ML', 'CV', 'Python', 'C++'],
         averageRate: 3,
-        type: 'библиотека',
-        company: "Royal Dutch shell (A)"
+        company: "Royal Dutch Shell (A)",
+        lives: 'г. Санкт-Петербург',
+        age: 23,
+        education: 'МФТИ (ФПМИ)',
+        yearsOfExperience: 5,
+        proffession: 'Data Scientist',
+        about: `Предприимчивый
+Филантроп
+Истеричный
+Саркастичный
+Дальновидный
+Жизнерадостный
+Перфекционист`
     },
     {
         id: 4,
         name: 'Андрей Павлов',
-        tariff: 'бессрочно',
         price: 100000,
-        price2: 800,
         avatarSrc: 'https://pbs.twimg.com/profile_images/1098525000/_avatarbig_400x400.jpeg',
         description: 'Работаю frontend-разработчиком 1 год. Выполнил 5 проектов (см. профиль)',
-        RAM: 1,
-        cores: 1,
-        performance: 1,
-        memory: 10,
         keywords: ['Frontend', 'JS', 'HTML', 'CSS', 'React'],
         averageRate: 2,
-        type: 'библиотека',
-        company: "ООО Солярис"
+        company: "ООО Солярис",
+        age: 20,
+        education: 'СПбГУ (мехмат)',
+        yearsOfExperience: 1,
+        proffession: 'Frontend-developer',
+        about: `Самостоятельный
+Опрятный
+Мягкий
+Предприимчивый
+Обаятельный
+Строгий
+Жадный`
     },
     {
         id: 5,
         name: 'Петров Игорь',
-        tariff: 'бессрочно',
         price: 3000,
-        price2: 100,
         avatarSrc: 'https://yt3.ggpht.com/a/AGF-l7_0hOupCneD2mC4JbiATdXtMysFkXWkkbeR4Q=s240-c-k-c0xffffffff-no-rj-mo',
         description: 'Senior fullstack-разработчик. Занимаюсь разработкой 20 лет. Предпочитаю сразу качественно выполнять работу, без тестовых заданий',
-        RAM: 2.7,
-        cores: 2,
-        performance: 2,
-        memory: 20,
         keywords: ['Fullstack', 'Frontend', 'Backend', 'System architect', 'Designer', 'Mathematics', 'UI/UX testing', 'ML', 'JS', 'Python', 'Go', 'C++', 'PHP', 'Angular', 'React', 'Vue', 'Svelte', 'Flask', 'DJango', 'nodeJS'],
         averageRate: 4,
-        type: 'библиотека',
-        company: "Yandex"
+        company: "Yandex",
+        lives: 'г. Казань',
+        age: 45,
+        education: 'МГУ (мехмат)',
+        yearsOfExperience: 20,
+        proffession: 'FullStack-developer',
+        about: `Беспощадный
+Уверенный в себе
+Грубый
+Мнимый
+Общительный
+Грамотный
+Занудный`
     }
 ];
 

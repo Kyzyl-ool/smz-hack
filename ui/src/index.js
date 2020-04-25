@@ -13,7 +13,7 @@ function App() {
         localStorage.setItem("role", "developer");
     }
     return <Router>
-        {/*<Header/>*/}
+        <Header/>
         <TreeRootRouter>
         </TreeRootRouter>
     </Router>

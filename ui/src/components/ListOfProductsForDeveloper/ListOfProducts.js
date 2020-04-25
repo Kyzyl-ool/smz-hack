@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, makeStyles} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -35,16 +35,18 @@ const useStyles = makeStyles(theme => ({
         marginTop: "14px",
         width: "180px"
     }
-}))
+}));
 
 const ListOfProductsForDeveloper = () => {
     const classes = useStyles();
-    const [openDialog, setOpenDialog] = React.useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+
     return (
         <>
             <Box display="flex" m={1}>
                 <FormControl className={classes.searchField}>
-                    <InputLabel htmlFor="input-with-icon-adornment">Поиск компаний заказчиков:</InputLabel>
+                    <InputLabel htmlFor="input-with-icon-adornment">Поиск задач от заказчиков по ключевым словам:</InputLabel>
                     <Input
                         id="input-with-icon-adornment"
                         startAdornment={
@@ -52,6 +54,8 @@ const ListOfProductsForDeveloper = () => {
                                 <Search/>
                             </InputAdornment>
                         }
+                        value={searchValue}
+                        onChange={event => setSearchValue(event.target.value)}
                     />
                 </FormControl>
                 <Button className={classes.createImageButton}
@@ -59,12 +63,6 @@ const ListOfProductsForDeveloper = () => {
                         color={"secondary"}
                 >
                     Поиск
-                </Button>
-                <Button className={classes.createImageButton}
-                        variant={"contained"}
-                        color={"secondary"}
-                        onClick={() => setOpenDialog(true)}>
-                    Добавить демо
                 </Button>
             </Box>
             {
