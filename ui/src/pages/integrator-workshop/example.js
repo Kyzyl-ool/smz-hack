@@ -148,7 +148,13 @@ export const developers = [
 Беспощадный
 Скучный
 Коварный
-Доверчивый`
+Доверчивый`,
+        projects: [
+            'https://github.com/ziadoz/awesome-php',
+            'https://heml.io/',
+            'http://www.vanillalist.com/',
+            'http://idangero.us/swiper'
+        ]
     },
     {
         id: 2,
@@ -170,7 +176,13 @@ export const developers = [
 Общительный
 Деятельный
 Грубый
-Осторожный`
+Осторожный`,
+        projects: [
+            'https://github.com/ziadoz/awesome-php',
+            'https://heml.io/',
+            'http://www.vanillalist.com/',
+            'http://idangero.us/swiper'
+        ]
     },
     {
         id: 3,
@@ -192,7 +204,13 @@ export const developers = [
 Саркастичный
 Дальновидный
 Жизнерадостный
-Перфекционист`
+Перфекционист`,
+        projects: [
+            'https://github.com/ziadoz/awesome-php',
+            'https://heml.io/',
+            'http://www.vanillalist.com/',
+            'http://idangero.us/swiper'
+        ]
     },
     {
         id: 4,
@@ -213,7 +231,13 @@ export const developers = [
 Предприимчивый
 Обаятельный
 Строгий
-Жадный`
+Жадный`,
+        projects: [
+            'https://github.com/ziadoz/awesome-php',
+            'https://heml.io/',
+            'http://www.vanillalist.com/',
+            'http://idangero.us/swiper'
+        ]
     },
     {
         id: 5,
@@ -235,7 +259,13 @@ export const developers = [
 Мнимый
 Общительный
 Грамотный
-Занудный`
+Занудный`,
+        projects: [
+            'https://github.com/ziadoz/awesome-php',
+            'https://heml.io/',
+            'http://www.vanillalist.com/',
+            'http://idangero.us/swiper'
+        ]
     }
 ];
 

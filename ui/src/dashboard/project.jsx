@@ -52,9 +52,10 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const mapStatusToComponent = (status, id) => {
+const mapStatusToComponent = (status, id, next) => {
     const [dialog, setDialog] = useState(false);
     const [snackbar, setSnackbar] = useState(false);
+    const [completedDialog, setCompletedDialog] = useState(false);
 
 
     useEffect(() => {
@@ -114,7 +115,10 @@ const mapStatusToComponent = (status, id) => {
                         <Button onClick={() => setDialog(false)} color="primary">
                             Отказаться
                         </Button>
-                        <Button onClick={() => setDialog(false)} color="primary" autoFocus variant={"contained"}>
+                        <Button onClick={() => {
+                            setDialog(false);
+                            next()
+                        }} color="primary" autoFocus variant={"contained"}>
                             Подтвердить
                         </Button>
                     </DialogActions>
@@ -142,10 +146,45 @@ const mapStatusToComponent = (status, id) => {
                     </CardContent>
                     <CardActions>
                         <Button color="primary" autoFocus variant={"contained"}>
-                            Связаться с заказчиком
+                            Открыть чат с заказчиком
+                        </Button>
+                        <Button color="primary" autoFocus variant={"contained"}
+                                onClick={() => setCompletedDialog(true)}>
+                            Объявить работу завершенной
                         </Button>
                     </CardActions>
                 </Card>
+                <Dialog open={completedDialog}>
+                    <DialogTitle>
+                        Первый этап завершения работы
+                    </DialogTitle>
+                    <DialogContent>
+                        <Typography>
+                            Вы сейчас собираетесь объявить о завершении работы. В случае, если заказчик согласится
+                            принять
+                            Вашу работу – будет выполняться процедура закрытия проекта и дальшейший расчет
+                            вознаграждения.
+                            В противном случае – Ваша работа будет рассмотрена модераторами на предмет соблюдения
+                            договоренностей между вами.
+                        </Typography>
+                        <Typography>
+                            Действие нельзя будет отменить. Продолжить?
+                        </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button color="primary" autoFocus variant={"outlined"}
+                                onClick={() => setCompletedDialog(false)}>
+                            Отмена
+                        </Button>
+                        <Button color="primary" autoFocus variant={"contained"}
+                                onClick={() => {
+                                    setCompletedDialog(false);
+                                    next()
+                                }}>
+                            Подтвердить
+                        </Button>
+                    </DialogActions>
+                </Dialog>
                 <Snackbar
                     autoHideDuration={3000}
                     key={'new query'}
@@ -167,7 +206,7 @@ const mapStatusToComponent = (status, id) => {
                             Проект завершен. Сумма вознаграждения начислена на ваш счет. Состояние платежа вы можете
                             проверить
                             на
-                            сайте ФНС:
+                            сайте ФНС.
                         </Typography>
                         <Typography variant={"subtitle2"}>
                             Вознаграждение облагается налогом для самозанятых и взимается комиссия за обслуживание
@@ -203,8 +242,8 @@ const TaskInfo = (props) => {
             <br/>
             {
                 interesting ? <Box>
-                    <Paper>
-                        <Box mt={6} mb={8} mx={6}>
+                    <Card>
+                        <CardContent>
                             <Typography variant={"h4"}>
                                 Поле деятельности
                             </Typography>
@@ -246,11 +285,13 @@ const TaskInfo = (props) => {
                                 саму
                                 компанию.
                             </Typography>
-                        </Box>
-                    </Paper>
-                    <Button color={'primary'} variant={'contained'}>
-                        Скачать ТЗ в PDF
-                    </Button>
+                        </CardContent>
+                        <CardActions>
+                            <Button color={'primary'} variant={'contained'}>
+                                Скачать ТЗ в PDF
+                            </Button>
+                        </CardActions>
+                    </Card>
                 </Box> : <Button color={'primary'} variant={'contained'} onClick={() => setInteresting(true)}>
                     Мне это интересно
                 </Button>
@@ -259,18 +300,18 @@ const TaskInfo = (props) => {
 
         </Box>
     </Container>
-}
+};
 
 
 function TabPanel(props) {
-    const {children, value, index, id, status, ...other} = props;
+    const {children, value, index, id, status, next, ...other} = props;
 
 
     switch (index) {
         case 2:
             return value === index ? <Container>
                 <Box paddingLeft="16px" marginTop="16px">
-                    {mapStatusToComponent(status, id)}
+                    {mapStatusToComponent(status, id, next)}
                 </Box>
             </Container> : null;
         case 1:
@@ -386,7 +427,8 @@ export function Project({id}) {
 
             </TabPanel>
             <Box px={10}>
-                <TabPanel value={activeTab} index={2} id={id} dir={theme.direction} status={projectState}>
+                <TabPanel value={activeTab} index={2} id={id} dir={theme.direction} status={projectState}
+                          next={() => setProjectState(projectState + 1)}>
                 </TabPanel>
             </Box>
         </div>
