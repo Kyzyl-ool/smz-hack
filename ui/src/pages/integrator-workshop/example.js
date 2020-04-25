@@ -88,7 +88,7 @@ export const products = [
         name: 'Система контроля электроэнергии в доме',
         price: 100000,
         avatarSrc: 'https://northcyprussale.ru/uploads/s/d/o/n/don2antj3c4t/img/full_FzgLDdhq.jpg',
-        description: 'Здесь реализован функционал для контроля электроэнергии (в том числе домашей) для девайсов Apple Home.',
+        description: 'Нужно сделать функционал для контроля электроэнергии (в том числе домашей) для девайсов Apple Home.',
         keywords: ['Cryptography', 'Python', 'HTML'],
         averageRate: 2,
         type: 'библиотека',

@@ -56,7 +56,7 @@ function Customer(props) {
             <br />
             <Box>
                 <Typography>
-                    Минимальная рейтинг:
+                    Минимальный рейтинг:
                 </Typography>
                 <Rater />
             </Box>

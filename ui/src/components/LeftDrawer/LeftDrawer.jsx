@@ -10,6 +10,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
+import {ML_SERVER} from "../../config/config";
+import TextField from "@material-ui/core/TextField";
 
 LeftDrawer.propTypes = {
     id: PropTypes.number
@@ -42,6 +44,8 @@ function LeftDrawer({id}) {
     const [dialog, setDialog] = useState(false);
     const [valid, setValid] = useState(false);
     const [innValue, setInnValue] = useState('');
+    const [mlDialog, setMlDialog] = useState(false);
+    const [description, setDescription] = useState('');
 
     const handleChange = (event) => {
         if (event.target.value.match(/\d*/) && event.target.value.length <= 12) {
@@ -57,6 +61,14 @@ function LeftDrawer({id}) {
         if (valid) {
             console.log('So what next?');
         }
+    };
+
+    const handleMLDescription = () => {
+        console.log('confirmed');
+    };
+
+    const handleTextFieldChange = (event) => {
+        setDescription(event.target.value.replace(/[а-яА-Я]/, ''));
     };
 
     return (
@@ -150,6 +162,47 @@ function LeftDrawer({id}) {
                     <Button variant={'contained'} color={'primary'} onClick={() => setDialog(true)}>
                         Оплатить самозанятому по ИНН
                     </Button>
+                    <br/>
+                    <Divider/>
+                    <br/>
+                    <Button
+                        variant={"contained"}
+                        color={"secondary"}
+                        onClick={() => setMlDialog(true)}>
+                        Подобрать специалистов по описанию технического задания
+                    </Button>
+                    <Dialog onClose={() => setMlDialog(false)} open={mlDialog}>
+                        <DialogTitle>
+                            Подбор специалистов
+                        </DialogTitle>
+                        <DialogContent>
+                            <Typography>
+                                Введите в текстовое поле ниже техническое описание своего проекта <strong>на английском</strong>. Мы автоматически
+                                подберем для Вас специалистов, которые вам нужны
+                            </Typography>
+                            <TextField
+                                id="outlined-multiline-static"
+                                label="Описание вашего проекта..."
+                                multiline
+                                rows={10}
+                                variant="outlined"
+                                value={description}
+                                onChange={handleTextFieldChange}
+                                fullWidth
+                            />
+                            <Typography variant={"subtitle2"}>
+                                Программа, распознающая в тексте ключевые слова, обучена на выборе данных из сайта StackOverflow.
+                            </Typography>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button variant={"outlined"} color={"primary"} onClick={() => setMlDialog(false)}>
+                                Отмена
+                            </Button>
+                            <Button variant={'contained'} color={'primary'} onClick={() => handleMLDescription()}>
+                                Подтвердить
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
                 </Box>
             }
             <Divider/>

@@ -20,6 +20,10 @@ import Checkbox from "@material-ui/core/Checkbox";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardHeader from "@material-ui/core/CardHeader";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -69,26 +73,30 @@ const mapStatusToComponent = (status, id) => {
             </Paper>
         }
         case 1: {
-            return <Paper>
-                <Box px={4} pt={3} pb={8}>
-                    <Typography variant={"h6"}>
-                        Заказчик предалагет вам заняться этой задачей. Дополнительные условия от заказчника:
-                    </Typography>
-                    <Typography variant={"subtitle1"}>
-                        Добрый день. Я бы хотел предложить вам этот проект. Сроки по нему уменьшились, поэтому нужно
-                        сделать
-                        его быстро. Поэтому готов заплатить вам на 50% больше заявленной суммы. Если заинтересовало –
-                        примите заявку.
-                    </Typography>
-                    <Box display={'flex'} justifyContent={'space-evenly'} mt={5}>
+            return <Box px={4} pt={3} pb={8}>
+                <Card>
+                    <CardContent>
+                        <Typography variant={"h5"}>
+                            Заказчик предалагет вам заняться этой задачей. Дополнительные условия от заказчника:
+                        </Typography>
+                        <Typography>
+                            Добрый день. Я бы хотел предложить вам этот проект. Сроки по нему уменьшились, поэтому
+                            нужно
+                            сделать
+                            его быстро. Поэтому готов заплатить вам на 50% больше заявленной суммы. Если
+                            заинтересовало –
+                            примите заявку.
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
                         <Button color={'primary'} variant={"contained"} onClick={() => setDialog(true)}>
                             Принять заявку и начать работу над проектом
                         </Button>
                         <Button color={"secondary"} variant={"outlined"}>
                             Отказаться
                         </Button>
-                    </Box>
-                </Box>
+                    </CardActions>
+                </Card>
                 <Dialog
                     open={dialog}
                     onClose={() => setDialog(false)}
@@ -122,19 +130,22 @@ const mapStatusToComponent = (status, id) => {
                         К вам новый запрос на выполнение проекта
                     </Alert>
                 </Snackbar>
-            </Paper>
+            </Box>
         }
         case 2: {
-            return <Paper>
-                <Box px={4} pt={3} pb={8}>
-                    <Typography variant={"h6"}>
-                        Вы в данный момент работаете над проектом.
-                    </Typography>
-                    <br/>
-                    <Button color="primary" autoFocus variant={"contained"}>
-                        Связаться с заказчиком
-                    </Button>
-                </Box>
+            return <Box px={4} pt={3} pb={8}>
+                <Card>
+                    <CardContent>
+                        <Typography variant={"h6"}>
+                            Вы в данный момент работаете над проектом.
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button color="primary" autoFocus variant={"contained"}>
+                            Связаться с заказчиком
+                        </Button>
+                    </CardActions>
+                </Card>
                 <Snackbar
                     autoHideDuration={3000}
                     key={'new query'}
@@ -146,28 +157,31 @@ const mapStatusToComponent = (status, id) => {
                         Вы приняли заявку на выполнение проекта
                     </Alert>
                 </Snackbar>
-            </Paper>
+            </Box>
         }
         case 3: {
-            return <Paper>
-                <Box px={4} pt={3} pb={8}>
-                    <Typography>
-                        Проект завершен. Сумма вознаграждения начислена на ваш счет. Состояние платежа вы можете
-                        проверить
-                        на
-                        сайте ФНС:
-                    </Typography>
-                    <br/>
-                    <Button color={'primary'} variant={"contained"}>
-                        Проверить платеж
-                    </Button>
-                    <br/>
-                    <Typography>
-                        Вознаграждение облагается налогом для самозанятых и взимается комиссия за обслуживание
-                        согласно <Link>правилам</Link>.
-                    </Typography>
-                </Box>
-            </Paper>
+            return <Box px={4} pt={3} pb={8}>
+                <Card>
+                    <CardContent>
+                        <Typography>
+                            Проект завершен. Сумма вознаграждения начислена на ваш счет. Состояние платежа вы можете
+                            проверить
+                            на
+                            сайте ФНС:
+                        </Typography>
+                        <Typography variant={"subtitle2"}>
+                            Вознаграждение облагается налогом для самозанятых и взимается комиссия за обслуживание
+                            согласно <Link>правилам</Link>.
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button color={'primary'} variant={"contained"}>
+                            Проверить платеж
+                        </Button>
+                    </CardActions>
+                </Card>
+
+            </Box>
         }
     }
 };

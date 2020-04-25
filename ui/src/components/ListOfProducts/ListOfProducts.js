@@ -67,8 +67,8 @@ const ListOfProducts = () => {
                     <Button styles={{marginLeft: "8px"}}
                             variant={"contained"}
                             color={"secondary"}
-                            onClick={() => window.open('http://localhost:5000')}>
-                        Подобрать
+                            onClick={() => {}}>
+                        Найти
                     </Button>
                 </Box>
             </Box>
