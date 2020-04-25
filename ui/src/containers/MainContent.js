@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import IntegratorWorkshop from "../pages/integrator-workshop/IntegratorWorkshop";
-import {Box, makeStyles} from "@material-ui/core";
+import {Box, Dialog, makeStyles} from "@material-ui/core";
 import ListOfProducts from "../components/ListOfProducts/ListOfProducts";
 import ListOfProductsForDeveloper from "../components/ListOfProductsForDeveloper/ListOfProducts";
+import {useLocation} from 'react-router-dom';
+import DialogContent from "@material-ui/core/DialogContent";
+import {PaymentLoader} from "../components/PaymentLoader/PaymentLoader";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -29,13 +32,23 @@ const mapRoleToMainContent = (role, rest) => {
 }
 
 const MainContent = ({callback}) => {
-    const classes = useStyles()
+    const classes = useStyles();
+    const location = useLocation();
+    const success = new URLSearchParams(location.search).get('checkPayment');
+    const [open, setOpen] = useState(!!success);
 
+
+    console.log(success);
     return (
         <Box className={classes.content}>
             {
                 mapRoleToMainContent(localStorage.getItem('role'), callback)
             }
+            <Dialog open={open} onClose={() => setOpen(false)}>
+                <DialogContent>
+                    <PaymentLoader status={+success} />
+                </DialogContent>
+            </Dialog>
         </Box>
     )
 };

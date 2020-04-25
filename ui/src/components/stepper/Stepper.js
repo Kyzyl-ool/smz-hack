@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -9,6 +9,10 @@ import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import Divider from "@material-ui/core/Divider";
 import {LinearDeterminate} from "../LinearDeterminate/LinearDeterminate";
+import axios from 'axios';
+import {PAYMENT_SERVER} from "../../config/config";
+import CircularIndeterminate from "../CirculatIndeterminate/CircularIndeterminate";
+import LinearIndeterminate from "../LinearIndeterminate/LinearIndeterminate";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,9 +31,64 @@ function getSteps() {
     return ['Ввод реквизитов самозанятого', 'Проверка', 'Завершение оплаты'];
 }
 
+const confirmationProgress = (progress, inn) => {
+    switch (progress) {
+        case 'not confirmed': {
+            return <Typography color={'error'}>
+                <b>ИНН ({inn}) самозанятого не найден в ФНС</b>
+            </Typography>
+        }
+        case 'confirmed': {
+            return <Typography>
+                <b>ИНН ({inn}) самозанятого подтвержден</b>
+            </Typography>
+        }
+        case '': {
+            return <>
+                <Typography>
+                    Идет подтверждение статуса самозанятого...
+                </Typography>
+                <LinearIndeterminate/>
+            </>
+        }
+    }
+};
+
 function getStepContent(step, props) {
     const {innValue, handleChange, amount, paymentDescription} = props;
-    const [complete, setComplete] = useState(false);
+    const [smzInnConfirmed, setSmzInnConfirmed] = useState('');
+
+    useEffect(() => {
+        if (step === 2) {
+            axios.post(`${PAYMENT_SERVER}/create_payment_link`, {
+                price: +amount,
+                pageParams: {
+                    ["description"]: paymentDescription,
+                    ["urlOnDecline"]: "http://35.223.43.55/main?checkPayment=0",
+                    ["urlOnSuccess"]: "http://35.223.43.55/main?checkPayment=1"
+                }
+            })
+                .then(value => {
+                    window.open(value.data)
+                })
+        }
+        if (step === 1) {
+            axios.get(`${PAYMENT_SERVER}/get_status`, {
+                data: {
+                    inn: innValue
+                }
+            })
+                .then(value => {
+                    if (value.data) {
+                        setSmzInnConfirmed('confirmed');
+                    }
+                })
+                .catch(reason => {
+                    console.log(reason);
+                    setSmzInnConfirmed('not confirmed');
+                })
+        }
+    }, [step]);
 
     switch (step) {
         case 0:
@@ -53,9 +112,9 @@ function getStepContent(step, props) {
         case 1:
             return <Box>
                 <Box my={1}>
-                    <Typography>
-                        <b>ИНН самозанятого подтвержден</b>
-                    </Typography>
+                    {
+                        confirmationProgress(smzInnConfirmed, innValue)
+                    }
                     <Typography>
                         <b>Договор и счет сформирован</b>
                     </Typography>
@@ -72,18 +131,9 @@ function getStepContent(step, props) {
             </Box>;
         case 2:
             return <Box>
-                {
-                    complete ? <>
-                        <Typography variant={'h5'}>
-                            Оплата успешно выполнена. Благодарим вас за использование сервиса!
-                        </Typography>
-                    </> : <>
-                        <Typography>
-                            Выполнение оплаты самозанятому...
-                        </Typography>
-                        <LinearDeterminate onComplete={() => setComplete(true)}/>
-                    </>
-                }
+                <Typography>
+                    Сейчас вы будете перенаправлены на страницу платежа...
+                </Typography>
             </Box>;
         default:
             return 'Unknown step';

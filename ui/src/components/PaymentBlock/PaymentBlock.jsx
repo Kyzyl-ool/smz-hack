@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
 import HorizontalLinearStepper from "../stepper/Stepper";
 
 
