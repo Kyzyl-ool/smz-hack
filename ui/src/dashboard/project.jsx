@@ -293,6 +293,9 @@ const TaskInfo = (props) => {
                             <Button color={'primary'} variant={'contained'}>
                                 Скачать ТЗ в PDF
                             </Button>
+                            <Button color={'primary'} variant={'contained'}>
+                                Откликнуться
+                            </Button>
                         </CardActions>
                     </Card>
                 </Box> : <Button color={'primary'} variant={'contained'} onClick={() => setInteresting(true)}>

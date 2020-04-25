@@ -267,36 +267,42 @@ function TabPanel(props) {
     switch (index) {
         case 0:
             return value === index ? <Container>
-                <Box p={2}>
-                    <Typography variant={'h4'}>
-                        Краткая биография
-                    </Typography>
-                    <Typography>
-                        <b>ФИО: </b>{developers[id].name}
-                    </Typography>
-                    <Typography>
-                        <b>Живет в: </b>{developers[id].lives}
-                    </Typography>
-                    <Typography>
-                        <b>Возраст: </b>{developers[id].age}
-                    </Typography>
-                    <Typography>
-                        <b>Образование: </b>{developers[id].education}
-                    </Typography>
-                    <Typography>
-                        <b>О себе: </b>{developers[id].about.split('\n').join(', ')}
-                    </Typography>
-                    <Typography variant={'h4'}>
-                        Платежные данные
-                    </Typography>
-                    <Typography>
-                        <b>ИНН подтвержден </b>
-                    </Typography>
-                    <Typography>
-                        <b>Счет в банке подтвержден </b>
-                    </Typography>
-                </Box>
-            </Container> : null;
+                    <Box p={2}>
+                        <Typography variant={'h4'}>
+                            Краткая биография
+                        </Typography>
+                        <Typography>
+                            <b>ФИО: </b>{developers[id].name}
+                        </Typography>
+                        <Typography>
+                            <b>Живет в: </b>{developers[id].lives}
+                        </Typography>
+                        <Typography>
+                            <b>Возраст: </b>{developers[id].age}
+                        </Typography>
+                        <Typography>
+                            <b>Образование: </b>{developers[id].education}
+                        </Typography>
+                        <Typography>
+                            <b>О себе: </b>{developers[id].about.split('\n').join(', ')}
+                        </Typography>
+                        <Typography variant={'h4'}>
+                            Платежные данные
+                        </Typography>
+                        <Typography>
+                            <b>ИНН подтвержден </b>
+                        </Typography>
+                        <Typography>
+                            <b>Счет в банке подтвержден </b>
+                        </Typography>
+                        <Typography variant={'h4'}>
+                            Время
+                        </Typography>
+                        <Typography>
+                            {developers[id].name} может работать начиная с 30 апреля 2020.
+                        </Typography>
+                    </Box>
+                </Container> : null;
         case 1:
             return value === index ? <Container>
                 <Box p={2}>
