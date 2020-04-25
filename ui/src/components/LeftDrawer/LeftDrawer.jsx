@@ -144,10 +144,10 @@ function LeftDrawer({id}) {
                             {recognizeResult.length > 0 ? 'Предложенные специалисты' : 'Подбор специалистов'}
                         </DialogTitle>
                         <DialogContent>
-                            <Typography variant={'h5'}>
-                                Возможно, специалисты со следующими навыками будут Вам полезны:
-                            </Typography>
                             {recognizeResult.length > 0 ? <Box>
+                                <Typography variant={'h5'}>
+                                    Возможно, специалисты со следующими навыками будут Вам полезны:
+                                </Typography>
                                 {recognizeResult.map((value, index) => <Typography key={index}>
                                     {value}
                                 </Typography>)}
@@ -179,11 +179,13 @@ function LeftDrawer({id}) {
                             <Button variant={"outlined"} color={"primary"} onClick={() => setMlDialog(false)}>
                                 Отмена
                             </Button>
-                            {recognizeResult.length === 0 ? <Button variant={'contained'} color={'primary'} onClick={() => handleMLDescription()}>
-                                Подтвердить
-                            </Button> : <Button variant={'contained'} color={'primary'} onClick={() => setRecognizeResult([])}>
-                                Попробовать еще
-                            </Button>}
+                            {recognizeResult.length === 0 ?
+                                <Button variant={'contained'} color={'primary'} onClick={() => handleMLDescription()}>
+                                    Подтвердить
+                                </Button> :
+                                <Button variant={'contained'} color={'primary'} onClick={() => setRecognizeResult([])}>
+                                    Попробовать еще
+                                </Button>}
                         </DialogActions>
                     </Dialog>
                 </Box>
