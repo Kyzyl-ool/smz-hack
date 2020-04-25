@@ -67,8 +67,11 @@ const mapStatusToComponent = (status, id, next) => {
         case 0: {
             return <Paper>
                 <Box px={4} pt={3} pb={8}>
-                    <Typography color={"textSecondary"}>
+                    <Typography>
                         Вы пока не участвуете в выполнении этого проекта.
+                    </Typography>
+                    <Typography color={"textSecondary"}>
+                        Нажмите на клавиатуре клавишу <code>P</code>, чтобы имитировать запрос от заказчика.
                     </Typography>
                 </Box>
             </Paper>

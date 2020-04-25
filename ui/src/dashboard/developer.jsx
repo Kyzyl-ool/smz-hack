@@ -286,6 +286,15 @@ function TabPanel(props) {
                     <Typography>
                         <b>О себе: </b>{developers[id].about.split('\n').join(', ')}
                     </Typography>
+                    <Typography variant={'h4'}>
+                        Платежные данные
+                    </Typography>
+                    <Typography>
+                        <b>ИНН подтвержден </b>
+                    </Typography>
+                    <Typography>
+                        <b>Счет в банке подтвержден </b>
+                    </Typography>
                 </Box>
             </Container> : null;
         case 1:

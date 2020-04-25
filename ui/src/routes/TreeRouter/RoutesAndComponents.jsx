@@ -7,10 +7,10 @@ import {Developer} from "../../dashboard/developer";
 
 
 export const firstLevelRoutes = [
-    {
-        name: 'product',
-        component: ({id}) => <Details id={id}/>
-    },
+    // {
+    //     name: 'product',
+    //     component: ({id}) => <Details id={id}/>
+    // },
     {
         name: 'project',
         component: ({id}) => <Project id={id}/>
