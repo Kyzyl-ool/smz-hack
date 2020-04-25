@@ -1,1 +1,1 @@
-export const ML_SERVER = 'http://localhost:5000';
+export const ML_SERVER = 'http://35.223.43.55/ml';

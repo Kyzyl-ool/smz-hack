@@ -45,7 +45,7 @@
 		"@material-ui/icons": "^4.4.1",
 		"@material-ui/lab": "^4.0.0-alpha.50",
 		"@material-ui/styles": "^4.7.1",
-		"axios": "^0.18.0",
+		"axios": "^0.19.2",
 		"clsx": "latest",
 		"date-fns": "^2.8.1",
 		"express": "^4.16.4",

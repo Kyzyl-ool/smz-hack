@@ -5,9 +5,14 @@ import TextField from "@material-ui/core/TextField";
 
 
 export const PaymentBlock = (props) => {
-    const {innValue, handleChange} = props;
+    const {innValue, handleChange, amount, paymentDescription} = props;
     return <Box p={2}>
-        <TextField id="inn-value" label="ИНН" variant="outlined" value={innValue} onChange={handleChange}/>
+        <Box display={'flex'} flexDirection={'column'}>
+            <TextField id="inn" label="ИНН" variant="outlined" value={innValue} onChange={handleChange}/>
+            <TextField id="amount" label="Сумма оплаты" variant="outlined" value={amount} onChange={handleChange}/>
+            <TextField id="description" label="Описание платежа" variant="outlined" value={paymentDescription}
+                       onChange={handleChange}/>
+        </Box>
         <br/>
         <Typography>
             Согласно законодательству, самозанятые облагаются налогом в 6% от зароботной платы. Кроме того,

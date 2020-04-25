@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Divider, makeStyles, Typography, Chip, Button} from "@material-ui/core";
 import {Avatar} from "../Avatar/Avatar";
 import PropTypes from "prop-types";
@@ -10,8 +10,9 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
-import {ML_SERVER} from "../../config/config";
 import TextField from "@material-ui/core/TextField";
+import {TextRecognition} from "../../api/TextRecognition";
+import CircularIndeterminate from "../CirculatIndeterminate/CircularIndeterminate";
 
 LeftDrawer.propTypes = {
     id: PropTypes.number
@@ -46,11 +47,34 @@ function LeftDrawer({id}) {
     const [innValue, setInnValue] = useState('');
     const [mlDialog, setMlDialog] = useState(false);
     const [description, setDescription] = useState('');
+    const [amount, setAmount] = useState(0);
+    const [paymentDescription, setPaymentDescription] = useState('');
+    const [recognizeResult, setRecognizeResult] = useState([]);
+    const [recognizing, setRecognizing] = useState(false);
+
 
     const handleChange = (event) => {
-        if (event.target.value.match(/\d*/) && event.target.value.length <= 12) {
-            setInnValue(event.target.value);
-            setValid(event.target.value.match(/\d*/) && event.target.value.length === 12);
+        switch (event.target.id) {
+            case 'inn': {
+                if (event.target.value.match(/\d*/) && event.target.value.length <= 12) {
+                    setInnValue(event.target.value);
+                    setValid(event.target.value.match(/\d*/) && event.target.value.length === 12);
+                }
+                break;
+            }
+            case 'amount': {
+                if (event.target.value.match(/\d*/)) {
+                    setAmount(event.target.value);
+                }
+                break;
+            }
+            case 'description': {
+                setPaymentDescription(event.target.value);
+                break;
+            }
+            default: {
+                break;
+            }
         }
     };
 
@@ -59,12 +83,19 @@ function LeftDrawer({id}) {
     };
     const handleForm = () => {
         if (valid) {
-            console.log('So what next?');
+            console.log(innValue);
+            console.log(amount);
+            console.log(paymentDescription);
         }
     };
 
     const handleMLDescription = () => {
-        console.log('confirmed');
+        setRecognizing(true);
+        TextRecognition.recognize(description)
+            .then(value => {
+                setRecognizing(false);
+                setRecognizeResult(value);
+            });
     };
 
     const handleTextFieldChange = (event) => {
@@ -95,69 +126,6 @@ function LeftDrawer({id}) {
                 </Box>
             </Box>}
             {
-                localStorage.getItem('role') === 'integrator' && <Box p={2}>
-                    <Typography variant={"h6"}>
-                        Мои клиенты:
-                    </Typography>
-
-                    <div className="user-info-1">
-                        <img
-                            src={'https://c.pxhere.com/photos/e1/41/man_person_portrait_face_passport_photograph-1238378.jpg!s'}
-                            alt={'user'} className='user-photo-1'/>
-                        <div className="user-name-1">
-                            <b>Александр Гончаров</b>
-                            <br/>
-                            <Typography variant={"caption"}>
-                                Приобрел(-a) ваших продуктов: <b>4</b>
-                            </Typography>
-                        </div>
-                    </div>
-                    <div className="user-info-1">
-                        <img src={'https://itgifts.ru/assets/new/images/sumka/eblo2.jpg'} alt={'user'}
-                             className='user-photo-1'/>
-                        <div className="user-name-1">
-                            <b>Евгений Иванов</b>
-                            <br/>
-                            <Typography variant={"caption"}>
-                                Приобрел(-a) ваших продуктов: <b>1</b>
-                            </Typography>
-                        </div>
-                    </div>
-                    <div className="user-info-1">
-                        <img src={'http://smilesecret.ru/img/vredno-li-otbelivanie-zubov-2.jpg'} alt={'user'}
-                             className='user-photo-1'/>
-                        <div className="user-name-1">
-                            <b>Дарья Полева</b>
-                            <br/>
-                            <Typography variant={"caption"}>
-                                Приобрел(-a) ваших продуктов: <b>41</b>
-                            </Typography></div>
-                    </div>
-                    <div className="user-info-1">
-                        <img
-                            src={'https://i.pinimg.com/236x/81/01/9e/81019e40d0e697d994c9848ae7d0df87--woman-portrait-tag.jpg'}
-                            alt={'user'} className='user-photo-1'/>
-                        <div className="user-name-1">
-                            <b>Анастасия Соболева</b>
-                            <br/>
-                            <Typography variant={"caption"}>
-                                Приобрел(-a) ваших продуктов: <b>40</b>
-                            </Typography></div>
-                    </div>
-                    <div className="user-info-1">
-                        <img src={'https://evakyator-spb.ru/img/comments/img2.jpg'} alt={'user'}
-                             className='user-photo-1'/>
-                        <div className="user-name-1">
-                            <b>Андрей Филатов</b>
-                            <br/>
-                            <Typography variant={"caption"}>
-                                Приобрел(-a) ваших продуктов: <b>13</b>
-                            </Typography></div>
-                    </div>
-
-                </Box>
-            }
-            {
                 localStorage.getItem('role') === 'customer' && <Box p={2}>
                     <Button variant={'contained'} color={'primary'} onClick={() => setDialog(true)}>
                         Оплатить самозанятому по ИНН
@@ -173,34 +141,49 @@ function LeftDrawer({id}) {
                     </Button>
                     <Dialog onClose={() => setMlDialog(false)} open={mlDialog}>
                         <DialogTitle>
-                            Подбор специалистов
+                            {recognizeResult.length > 0 ? 'Предложенные специалисты' : 'Подбор специалистов'}
                         </DialogTitle>
                         <DialogContent>
-                            <Typography>
-                                Введите в текстовое поле ниже техническое описание своего проекта <strong>на английском</strong>. Мы автоматически
-                                подберем для Вас специалистов, которые вам нужны
+                            <Typography variant={'h5'}>
+                                Возможно, специалисты со следующими навыками будут Вам полезны:
                             </Typography>
-                            <TextField
-                                id="outlined-multiline-static"
-                                label="Описание вашего проекта..."
-                                multiline
-                                rows={10}
-                                variant="outlined"
-                                value={description}
-                                onChange={handleTextFieldChange}
-                                fullWidth
-                            />
-                            <Typography variant={"subtitle2"}>
-                                Программа, распознающая в тексте ключевые слова, обучена на выборе данных из сайта StackOverflow.
-                            </Typography>
+                            {recognizeResult.length > 0 ? <Box>
+                                {recognizeResult.map((value, index) => <Typography key={index}>
+                                    {value}
+                                </Typography>)}
+                            </Box> : <Box>
+                                <Typography>
+                                    Введите в текстовое поле ниже техническое описание своего проекта <strong>на
+                                    английском</strong>. Мы автоматически
+                                    подберем для Вас специалистов, которые вам нужны
+                                </Typography>
+                                <TextField
+                                    id="outlined-multiline-static"
+                                    label="Описание вашего проекта..."
+                                    multiline
+                                    rows={10}
+                                    variant="outlined"
+                                    value={description}
+                                    onChange={handleTextFieldChange}
+                                    fullWidth
+                                />
+                                <Typography variant={"subtitle2"}>
+                                    Программа, распознающая в тексте ключевые слова, обучена на выборе данных из сайта
+                                    StackOverflow.
+                                </Typography>
+                                {recognizing ? <CircularIndeterminate/> : null}
+                            </Box>}
+
                         </DialogContent>
                         <DialogActions>
                             <Button variant={"outlined"} color={"primary"} onClick={() => setMlDialog(false)}>
                                 Отмена
                             </Button>
-                            <Button variant={'contained'} color={'primary'} onClick={() => handleMLDescription()}>
+                            {recognizeResult.length === 0 ? <Button variant={'contained'} color={'primary'} onClick={() => handleMLDescription()}>
                                 Подтвердить
-                            </Button>
+                            </Button> : <Button variant={'contained'} color={'primary'} onClick={() => setRecognizeResult([])}>
+                                Попробовать еще
+                            </Button>}
                         </DialogActions>
                     </Dialog>
                 </Box>
