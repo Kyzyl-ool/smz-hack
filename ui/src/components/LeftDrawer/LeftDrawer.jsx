@@ -197,14 +197,14 @@ function LeftDrawer({id}) {
                         handleChange={handleChange}
                     />
                 </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseDialog} color="primary">
-                        Отмена
-                    </Button>
-                    <Button onClick={handleForm} color="primary" disabled={!valid}>
-                        Далее
-                    </Button>
-                </DialogActions>
+                {/*<DialogActions>*/}
+                {/*    <Button onClick={handleCloseDialog} color="primary">*/}
+                {/*        Отмена*/}
+                {/*    </Button>*/}
+                {/*    <Button onClick={handleForm} color="primary" disabled={!valid}>*/}
+                {/*        Далее*/}
+                {/*    </Button>*/}
+                {/*</DialogActions>*/}
             </Dialog>
         </Box>
     );

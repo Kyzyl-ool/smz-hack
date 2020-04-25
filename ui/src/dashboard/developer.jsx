@@ -21,10 +21,10 @@ import List from "@material-ui/core/List";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemText from "@material-ui/core/ListItemText";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
+import {LinearDeterminate} from "../components/LinearDeterminate/LinearDeterminate";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -50,47 +50,10 @@ const useStyles = makeStyles(theme => ({
         maxHeight: '200px',
         objectFit: 'cover',
         mixBlendMode: 'hard-light',
-    },
-    progress: {
-        width: '100%',
-        '& > * + *': {
-            marginTop: theme.spacing(2),
-        },
     }
 }));
 
 export const MOCK_LINK = 'http://npchk.nalog.ru/';
-
-function LinearDeterminate({onComplete}) {
-    const classes = useStyles();
-    const [completed, setCompleted] = React.useState(0);
-
-    React.useEffect(() => {
-        function progress() {
-            setCompleted((oldCompleted) => {
-                if (oldCompleted === 100) {
-                    onComplete();
-                    return 100;
-                }
-                const diff = Math.random() * 10;
-                return Math.min(oldCompleted + diff, 100);
-            });
-        }
-
-        const timer = setInterval(progress, 500);
-        return () => {
-            clearInterval(timer);
-        };
-    }, []);
-
-
-    return (
-        <div className={classes.progress}>
-            <LinearProgress variant="determinate" value={completed} color="secondary"/>
-        </div>
-    );
-}
-
 
 const DeveloperInteraction = (props) => {
     const {step, id, next} = props;
