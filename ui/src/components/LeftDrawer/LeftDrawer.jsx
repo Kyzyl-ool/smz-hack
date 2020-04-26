@@ -139,6 +139,12 @@ function LeftDrawer({id}) {
                         onClick={() => setMlDialog(true)}>
                         Подобрать специалистов по описанию технического задания
                     </Button>
+                    <br/>
+                    <Divider/>
+                    <br/>
+                    <Button variant={'contained'} color={'primary'}>
+                        Мои заказы
+                    </Button>
                     <Dialog onClose={() => setMlDialog(false)} open={mlDialog}>
                         <DialogTitle>
                             {recognizeResult.length > 0 ? 'Предложенные специалисты' : 'Подбор специалистов'}
@@ -183,8 +189,8 @@ function LeftDrawer({id}) {
                                 <Button variant={'contained'} color={'primary'} onClick={() => handleMLDescription()}>
                                     Подтвердить
                                 </Button> :
-                                <Button variant={'contained'} color={'primary'} onClick={() => setRecognizeResult([])}>
-                                    Попробовать еще
+                                <Button variant={'contained'} color={'primary'} onClick={() => setMlDialog(false)}>
+                                    Перейти к выбору специалистов
                                 </Button>}
                         </DialogActions>
                     </Dialog>

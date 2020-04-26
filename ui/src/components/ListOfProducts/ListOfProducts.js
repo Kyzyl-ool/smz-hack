@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, makeStyles} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -49,6 +49,9 @@ const stubData = developers;
 
 
 const ListOfProducts = () => {
+    const [searchString, setSearchString] = useState('');
+    const [searchingString, setSearchingString] = useState('');
+
     return (
         <>
             <Box display="flex" m={1}>
@@ -61,19 +64,21 @@ const ListOfProducts = () => {
                                    <Search/>
                                </InputAdornment>
                            }
+                           value={searchString}
+                           onChange={event => setSearchString(event.target.value)}
                     />
                 </FormControl>
                 <Box ml={1}>
                     <Button styles={{marginLeft: "8px"}}
                             variant={"contained"}
                             color={"secondary"}
-                            onClick={() => {}}>
+                            onClick={() => setSearchingString(searchString)}>
                         Найти
                     </Button>
                 </Box>
             </Box>
             {
-                stubData.map((value, index) => (
+                stubData.filter(value => value.keywords.join(' ').concat(value.description).concat(value.about).toUpperCase().includes(searchingString.toUpperCase())).map((value, index) => (
                     <NavLink to={`developer/${value.id}`} key={index} style={{textDecoration: 'none'}}>
                         <ProductCard
                             {...value}

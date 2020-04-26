@@ -13,6 +13,7 @@ import axios from 'axios';
 import {PAYMENT_SERVER} from "../../config/config";
 import CircularIndeterminate from "../CirculatIndeterminate/CircularIndeterminate";
 import LinearIndeterminate from "../LinearIndeterminate/LinearIndeterminate";
+import {HandlingButton} from "../HandlingButton/HandlingButton";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -125,6 +126,14 @@ function getStepContent(step, props) {
                     <Typography>
                         <b>Реквизиты компании подтверждены</b>
                     </Typography>
+                </Box>
+                <Divider/>
+                <Box my={1}>
+                    <HandlingButton
+                        handlingLabel={'Синхронизация...'}
+                        doneLabel={'Синхронизовано со Сбербанк-Онлайн'}
+                        label={'Синхронизовать со Сбербанк-Онлайн'}
+                    />
                 </Box>
             </Box>;
         case 2:
