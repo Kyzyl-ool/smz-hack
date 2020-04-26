@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useReducer, useState} from 'react';
 import {Box, makeStyles} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -9,6 +9,8 @@ import {NavLink} from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
 import {developers, products} from "../../pages/integrator-workshop/example";
 import Button from "@material-ui/core/Button/Button";
+import {searchReducer, useSearchResult} from "../../../store/reducer";
+import {ReduxContent} from "../../index";
 
 // const stubData = [
 //     {
@@ -51,6 +53,7 @@ const stubData = developers;
 const ListOfProducts = () => {
     const [searchString, setSearchString] = useState('');
     const [searchingString, setSearchingString] = useState('');
+    const [store, dispatch] = useContext(ReduxContent);
 
     return (
         <>
@@ -78,7 +81,12 @@ const ListOfProducts = () => {
                 </Box>
             </Box>
             {
-                stubData.filter(value => value.keywords.join(' ').concat(value.description).concat(value.about).toUpperCase().includes(searchingString.toUpperCase())).map((value, index) => (
+                (
+                    store.result.length > 0 ?
+                        stubData.filter(value =>  store.result.some( value1 => value1.split(/[,.\s\t;!?%]/).filter(v => v.length>0).some(v => value.keywords.join(' ').concat(value.description).concat(value.about).toUpperCase().includes(v.toUpperCase()) ) )  )
+                        :
+                        stubData.filter(value => value.keywords.join(' ').concat(value.description).concat(value.about).toUpperCase().includes(searchingString.toUpperCase()))
+                ).map((value, index) => (
                     <NavLink to={`developer/${value.id}`} key={index} style={{textDecoration: 'none'}}>
                         <ProductCard
                             {...value}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useReducer, useState} from 'react';
 import {Box, Divider, makeStyles, Typography, Chip, Button} from "@material-ui/core";
 import {Avatar} from "../Avatar/Avatar";
 import PropTypes from "prop-types";
@@ -13,6 +13,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import TextField from "@material-ui/core/TextField";
 import {TextRecognition} from "../../api/TextRecognition";
 import CircularIndeterminate from "../CirculatIndeterminate/CircularIndeterminate";
+import {searchAction, searchReducer, useSearchResult} from "../../../store/reducer";
+import {ReduxContent} from "../../index";
 
 LeftDrawer.propTypes = {
     id: PropTypes.number
@@ -51,6 +53,7 @@ function LeftDrawer({id}) {
     const [paymentDescription, setPaymentDescription] = useState('');
     const [recognizeResult, setRecognizeResult] = useState([]);
     const [recognizing, setRecognizing] = useState(false);
+    const [store, dispatch] = useContext(ReduxContent);
 
 
     const handleChange = (event) => {
@@ -189,7 +192,7 @@ function LeftDrawer({id}) {
                                 <Button variant={'contained'} color={'primary'} onClick={() => handleMLDescription()}>
                                     Подтвердить
                                 </Button> :
-                                <Button variant={'contained'} color={'primary'} onClick={() => setMlDialog(false)}>
+                                <Button variant={'contained'} color={'primary'} onClick={() => {setMlDialog(false); dispatch(searchAction(recognizeResult))}}>
                                     Перейти к выбору специалистов
                                 </Button>}
                         </DialogActions>

@@ -38,7 +38,6 @@ const MainContent = ({callback}) => {
     const [open, setOpen] = useState(!!success);
 
 
-    console.log(success);
     return (
         <Box className={classes.content}>
             {
