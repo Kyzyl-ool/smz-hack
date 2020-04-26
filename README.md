@@ -42,7 +42,7 @@
 
 
 
-##Команда Chain++
+## Команда Chain++
 - **Анна Чухнина** (Product Manager, Designer)
 - **Кежик Кызыл-оол** (Frontend Developer)
 - **Григорий Мельников** (Backend Developer, Machine Learning)
