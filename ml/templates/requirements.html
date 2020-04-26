@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <title>Chain++</title>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                        <style>
+                            body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+                            .myLink {display: none}
+                            </style>
+                        <body class="w3-light-grey">
+                            
+                            <!-- Navigation Bar -->
+                            <div class="w3-bar w3-white w3-border-bottom w3-xlarge">
+                                <a href="#" class="w3-bar-item w3-button"><img src="static/startblock.jpg" width="200px"></a>
+                                <a href="#" class="w3-bar-item w3-button w3-right w3-hover-red w3-text-grey"><i class="fa fa-search"></i></a>
+                            </div>
+                            
+                            <!-- Header -->
+                            <header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+                                <img class="w3-image" src="static/code.jpg" alt="Code" width="1500" max-height="600">
+                                    <div class="w3-display-middle" style="width:65%">
+                                        <div class="w3-bar w3-black" >
+                                            <button class="w3-bar-item w3-button tablink" style="background-color:blue !important" onclick="openLink(event, 'Requirements');" >Requirements</button>
+                                        </div>
+                                        
+                                        <div id="Requirements" class="w3-container w3-white w3-padding-16 myLink">
+                                            <h3>Task:</h3>
+                                            <p>{{ body }}</p>
+                                            <h3>Your need:</h3>
+                                            {% if (data_scientist == True)  %}
+                                            <p>Data scientist (Python, R, machine learning methods)</p>
+                                            {% endif %}
+                                            {% if (backend == True)  %}
+                                            <p>Backend developer (Python/PHP, MySQL/PostreSQL/MongoDB)</p>
+                                            {% endif %}
+                                            {% if (frontend == True)  %}
+                                            <p>Frontend developer (Javascript, React.js/Vue.js, HTML, CSS)</p>
+                                            {% endif %}
+                                            {% if (mobile == True)  %}
+                                            <p>Mobile developer (IOS/Android/React Native)</p>
+                                            {% endif %}
+                                            {% if (design == True)  %}
+                                            <p>Designer (Adobe Photoshop, Figma, Sketch)</p>
+                                            {% endif %}
+                                            <p><a href="/" class="w3-button w3-dark-grey">New task</a></p>
+                                        </div>
+                                    </div>
+                            </header>
+                            <!-- Footer -->
+                            <footer class="w3-container w3-center w3-opacity w3-margin-bottom">
+                                <p>Powered by <a href="ibisolutions.team" target="_blank" class="w3-hover-text-green">IBI Solutions</a></p>
+                            </footer>
+                            
+                            <script>
+                                // Tabs
+                                function openLink(evt, linkName) {
+                                    var i, x, tablinks;
+                                    x = document.getElementsByClassName("myLink");
+                                    for (i = 0; i < x.length; i++) {
+                                        x[i].style.display = "none";
+                                    }
+                                    tablinks = document.getElementsByClassName("tablink");
+                                    for (i = 0; i < x.length; i++) {
+                                        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+                                    }
+                                    document.getElementById(linkName).style.display = "block";
+                                    evt.currentTarget.className += " w3-red";
+                                }
+                            
+                            // Click on the first tablink on load
+                            document.getElementsByClassName("tablink")[0].click();
+                                </script>
+                            
+                        </body>
+</html>
+
+
