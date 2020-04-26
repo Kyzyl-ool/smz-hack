@@ -73,10 +73,8 @@ function getStepContent(step, props) {
                 })
         }
         if (step === 1) {
-            axios.get(`${PAYMENT_SERVER}/get_status`, {
-                data: {
-                    inn: innValue
-                }
+            axios.post(`${PAYMENT_SERVER}/get_status`, {
+                inn: innValue
             })
                 .then(value => {
                     if (value.data) {
